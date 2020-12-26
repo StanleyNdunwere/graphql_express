@@ -12,19 +12,6 @@ const {
   GraphQLNonNull,
 } = graphql;
 
-const books = [
-  { name: "Gone", genre: "action", id: "1", authorId: "1" },
-  { name: "Yellow Sun", genre: "Suspense", id: "2", authorId: "2" },
-  { name: "Destroyed", genre: "Thriller", id: "3", authorId: "3" },
-]
-
-console.log(Author)
-const authors = [
-  { name: "James Patterson", age: "44", id: "1" },
-  { name: "Lennon Ajan", age: "24", id: "2" },
-  { name: "Grace Sullivan", age: "37", id: "5" },
-]
-
 const BookType = new GraphQLObjectType({
   name: "book",
   fields: () => ({
@@ -65,7 +52,6 @@ const RootQuery = new GraphQLObjectType({
       type: BookType,
       args: { id: { type: GraphQLID } },
       resolve: (parent, args) => {
-        // return _.find(books, { id: args.id });
         return Book.findById(args.id);
       }
     },
@@ -73,7 +59,6 @@ const RootQuery = new GraphQLObjectType({
       type: AuthorType,
       args: { id: { type: GraphQLID } },
       resolve: (parent, args) => {
-        // return _.find(authors, { id: args.id });
         return Author.findById(args.id);
       }
     },
